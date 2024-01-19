@@ -1,0 +1,2 @@
+# audio_trimmer_baseon_ass
+使用ass字幕文件为基础的音频切片程序
