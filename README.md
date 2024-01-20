@@ -3,7 +3,7 @@
 ## 演示视频 ##
 bilibili:[https://www.bilibili.com/video/BV1Vb4y1N7H4/](https://www.bilibili.com/video/BV1Vb4y1N7H4/)
 
-Youtube:[https://www.youtube.com/watch?v=dhfHOSZLwPw](https://www.youtube.com/watch?v=dhfHOSZLwPw)
+Youtube:[https://www.youtube.com/watch?v=OVPWruprTVg](https://www.youtube.com/watch?v=OVPWruprTVg)
 ## 程序优势 ##
 相较于使用音频编辑软件，使用本程序裁剪可以在已有字幕的前提下，通过更方便的字幕处理软件，快速裁剪所需要的音频片段，大大减少声音模型的训练的准备工作(准备音频源)所需的时间
 ## 环境要求 ##
