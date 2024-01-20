@@ -1,5 +1,20 @@
 # audio_trimmer_baseon_ass #
 使用ass字幕文件为基础的音频切片程序
+## 演示视频 ##
+bilibili:[https://www.bilibili.com/video/BV1Vb4y1N7H4/](https://www.bilibili.com/video/BV1Vb4y1N7H4/)
+
+Youtube:[https://www.youtube.com/watch?v=dhfHOSZLwPw](https://www.youtube.com/watch?v=dhfHOSZLwPw)
+## 程序优势 ##
+相较于使用音频编辑软件，使用本程序裁剪可以在已有字幕的前提下，通过更方便的字幕处理软件，快速裁剪所需要的音频片段，大大减少声音模型的训练的准备工作(准备音频源)所需的时间
+## 环境要求 ##
+python 3.11 测试可用 其他版本应该也没问题
+
+使用的库：
+> argparse、ffmpeg、chardet、datetime
+
+系统应该无需安装ffmpeg
+
+如果无法运行可以改用编译后的版本
 ## 参数说明 ##
 ### 必选参数 ###
   -lass 输入的ass文件路径
@@ -74,6 +89,10 @@ c.aegisub常见快捷键:
 > d 播放当前行最后的500ms
 > 
 > g/Enter 提交当前行
+> 
+> 鼠标左键 设置入点
+> 
+> 鼠标右键 设置出点
 
 4.将想要的内容设置为注释行，程序会裁剪所有的注释行
 
@@ -95,4 +114,6 @@ c.aegisub常见快捷键:
 4.ctrl+x剪切，选择第一行，ctrl+v粘贴，调轴并将这几行设为注释
 
 ## 后续开发计划 ##
-1.
+1.-lv和-lau参数合并(我是不太知道为什么我一开始要写成分着的，好像什么用没有)
+
+2.使用其他的Speaker Diarization程序，得到想要的人所在的时间段，再用这个结果匹配字幕文件(因为我感觉说话人分类的时间卡的准度没法符合我的要求，我用过whisper[https://huggingface.co/spaces/aadnk/whisper-webui/tree/main](https://huggingface.co/spaces/aadnk/whisper-webui/tree/main)附带的说话人分类，反正不是很准)。主要做的是匹配字幕文件这个过程

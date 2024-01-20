@@ -39,7 +39,6 @@ if(AudioPath != None):
     InputPath = str(AudioPath)
 else:
     InputPath = str(VideoPath)
-#添加文件格式参数判断
 #转换输入素材目录
 FolderClips = AssPath.split("\\")
 del FolderClips[(len(FolderClips) - 1)]
@@ -71,6 +70,7 @@ if(Verify != "[Script Info]\n"):
     sys.exit(1)
 Details = AssFile.readlines()
 OutputCount = 1
+LengthSummary = (datetime.datetime.strptime('0:00:00.00', '%H:%M:%S.%f'))
 print((str(OutputPath) + "\\" + str(OutputCount) + "." + str(CodeType)))
 for line in Details:
     if("Comment: " in line):
@@ -80,4 +80,5 @@ for line in Details:
         ClipLength = (datetime.datetime.strptime(EndTime, '%H:%M:%S.%f')) - (datetime.datetime.strptime(StartTime, '%H:%M:%S.%f'))
         ffmpeg.input(InputPath, ss=StartTime).output((str(OutputPath) + "\\" + str(OutputCount) + "." + str(CodeType)), to = ClipLength, acodec = str(Filetype)).run()
         OutputCount = OutputCount + 1
-print("运行已结束\n本次运行共裁剪音频" + str(OutputCount - 1) + "段\n裁剪总时长")
+        LengthSummary = LengthSummary + ClipLength
+print("运行已结束\n本次运行共裁剪音频" + str(OutputCount - 1) + "段\n裁剪总时长" + str(LengthSummary))
