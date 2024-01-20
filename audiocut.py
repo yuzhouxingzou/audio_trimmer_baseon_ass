@@ -11,12 +11,21 @@ parser.add_argument('-lv',metavar='VideoPATH', type=str, help='视频文件路�
 parser.add_argument('-lau',metavar='AudioPATH', type=str, help='音频文件路径', required=False)
 parser.add_argument('-o',metavar='OutputPATH', type=str, help='输出文件路径(不填则为ass文件的路径下的output)', required=False)
 parser.add_argument('-c',metavar='TheCodingWay', type=str, help='输出文件编码方式 详见README文档', required=False)
+parser.add_argument('-f',metavar='OutputFileType', type=str, help='输出文件格式 详见README文档', required=False)
 TempDump = parser.parse_args()
 AssPath = TempDump.lass
 VideoPath = TempDump.lv
 AudioPath = TempDump.lau
 OutputPath = TempDump.o
 CodeType = TempDump.c
+if(CodeType == None):
+    CodeType = "flac"
+if(CodeType == "flac" or "FLAC"):
+    Filetype = "flac"
+else:
+    Filetype = TempDump.f
+    if(Filetype == None):
+        Filetype = CodeType
 #判断是否提供输入文件及是否冲突、确定输入文件
 if((VideoPath == None and AudioPath == None) or (VideoPath != None and AudioPath != None)):
     print("请使用-lv“或”-lau参数提供视频文件“或”音频文件路径 使用-h参数运行以获取参数帮助")
@@ -69,6 +78,6 @@ for line in Details:
         StartTime = LineClips[1]
         EndTime = LineClips[2]
         ClipLength = (datetime.datetime.strptime(EndTime, '%H:%M:%S.%f')) - (datetime.datetime.strptime(StartTime, '%H:%M:%S.%f'))
-        ffmpeg.input(InputPath, ss=StartTime).output((str(OutputPath) + "\\" + str(OutputCount) + "." + str(CodeType)), to = ClipLength, acodec = str(CodeType)).run()
+        ffmpeg.input(InputPath, ss=StartTime).output((str(OutputPath) + "\\" + str(OutputCount) + "." + str(CodeType)), to = ClipLength, acodec = str(Filetype)).run()
         OutputCount = OutputCount + 1
-print("运行已结束\n本次运行共裁剪音频" + (OutputCount - 1) + "段\n裁剪总时长")
+print("运行已结束\n本次运行共裁剪音频" + str(OutputCount - 1) + "段\n裁剪总时长")
